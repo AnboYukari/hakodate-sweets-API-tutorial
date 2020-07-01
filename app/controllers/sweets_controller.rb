@@ -5,7 +5,10 @@ class SweetsController < ApplicationController
     @sweets = nil
     if params[:shop_id].present?
       shop =  Shop.find(params[:shop_id])
-      @sweets = shop.sweets.all
+      @sweets = shop.sweet.all
+    elsif params[:category_id].present?
+      category = Category.find(params[:category_id])
+      @sweets = category.sweets.all
     else
       @sweets = Sweet.all
     end
